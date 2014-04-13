@@ -4,7 +4,8 @@ define(["jquery", "jquery-ui"], function($) {
         "bleed.changed": "bleed",
         "cellpadding.changed": "cellpadding",
         "noiseIntensity.changed": "noiseIntensity",
-        "colors.new": "colors"
+        "colors.new": "colors",
+        "randomize": "randomize"
     };
 
     var subscriptions = {};
@@ -58,6 +59,11 @@ define(["jquery", "jquery-ui"], function($) {
     var $colorButton = $("#color-button");
     $colorButton.click(function() {
         triggerSubscribers(events["colors.new"]);
+    });
+    
+    var $randomizeButton =$("#randomize-button");
+    $randomizeButton.click(function() {
+        triggerSubscribers(events.randomize);
     });
 
     return {

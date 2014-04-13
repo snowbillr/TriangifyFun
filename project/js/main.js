@@ -14,6 +14,11 @@ require(["js/trianglify-container", "js/trianglify-controls"], function(Triangli
                 TrianglifyContainer.updateColors();
                 TrianglifyContainer.refresh();
             });
+        } else if (value == TrianglifyControls.events.randomize) {
+            TrianglifyControls.subscribe(value, function() {
+                TrianglifyContainer.randomize();
+                TrianglifyContainer.refresh();
+            });
         } else {
             registerSliderCallback(value);
         }

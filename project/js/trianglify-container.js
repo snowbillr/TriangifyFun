@@ -18,7 +18,7 @@ define(["jquery", "d3", "trianglify", "jquery-ui"], function($, d3, Trianglify) 
         $trianglifyContainer.empty();
         injectPattern();
     };
-    
+
     var injectPattern = function() {
         var pattern = _createPattern();
         $trianglifyContainer.append(pattern.svg);
@@ -30,17 +30,34 @@ define(["jquery", "d3", "trianglify", "jquery-ui"], function($, d3, Trianglify) 
 
         return pattern;
     };
-    
+
     var updateOptions = function(option, newValue) {
         options[option] = newValue;
     };
-    
+
     var updateColors = function() {
         var colorPalette = Trianglify.randomColor();
         options.x_gradient = colorPalette;
         options.y_gradient = _lightenColorArray(colorPalette);
     };
+
+    var randomize = function() {
+        options.cellsize = _randomIntBetween(0, 500);
+        options.bleed = _randomIntBetween(0, 500);
+        options.cellpadding = _randomIntBetween(0, 150);
+        options.noiseIntensity = _randomNumberBetween(0, 1);
+        options.x_gradient = Trianglify.randomColor();
+        options.y_gradient = _lightenColorArray(options.x_gradient);
+    };
+
+    var _randomIntBetween = function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
     
+    var _randomNumberBetween = function(min, max) {
+        return Math.random() * (max - min + 1) + min;
+    }
+
     var _lightenColorArray = function(colorArray) {
         return d3.rgb(colorArray).brighter(.5);
     };
@@ -49,6 +66,7 @@ define(["jquery", "d3", "trianglify", "jquery-ui"], function($, d3, Trianglify) 
         injectPattern: injectPattern,
         refresh: refresh,
         updateOptions: updateOptions,
-        updateColors: updateColors
+        updateColors: updateColors,
+        randomize: randomize
     };
 });
