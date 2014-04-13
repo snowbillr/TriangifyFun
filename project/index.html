@@ -3,10 +3,29 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/trianglify.css"  type="text/css" media="all">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.11/require.min.js" data-main="config/initialize"></script>
     </head>
     <body>
         <div id="trianglify-container"></div>
-        <div id="trianglify-controls"></div>
+        <div id="trianglify-controls">
+            <div class="slider-group">
+                <div class="slider-label">Cellsize</div>
+                <div id="cellsize-slider"></div>
+            </div>
+            <div class="slider-group">
+                <div class="slider-label">Bleed</div>
+                <div id="bleed-slider"></div>
+            </div>
+            <div class="slider-group">
+                <div class="slider-label">Cellpadding</div>
+                <div id="cellpadding-slider"></div>
+            </div>
+            <div class="slider-group">
+                <div class="slider-label">Noise Intensity</div>
+                <div id="noiseIntensity-slider"></div>
+            </div>
+            <button id="color-button">New color</button>
+        </div>
     </body>
 </html>

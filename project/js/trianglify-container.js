@@ -14,10 +14,15 @@ define(["jquery", "d3", "trianglify", "jquery-ui"], function($, d3, Trianglify) 
         })
     };
 
+    var refresh = function() {
+        $trianglifyContainer.empty();
+        injectPattern();
+    }
+    
     var injectPattern = function() {
         var pattern = _createPattern();
         $trianglifyContainer.append(pattern.svg);
-    }
+    };
 
     var _createPattern = function() {
         var patternGenerator = new Trianglify(options);
@@ -25,8 +30,14 @@ define(["jquery", "d3", "trianglify", "jquery-ui"], function($, d3, Trianglify) 
 
         return pattern;
     };
+    
+    var updateOptions = function(option, newValue) {
+        options[option] = newValue;
+    }
 
     return {
-        injectPattern: injectPattern
+        injectPattern: injectPattern,
+        refresh: refresh,
+        updateOptions: updateOptions
     };
 });
