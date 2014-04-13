@@ -17,7 +17,7 @@ define(["jquery", "d3", "trianglify", "jquery-ui"], function($, d3, Trianglify) 
     var refresh = function() {
         $trianglifyContainer.empty();
         injectPattern();
-    }
+    };
     
     var injectPattern = function() {
         var pattern = _createPattern();
@@ -33,11 +33,22 @@ define(["jquery", "d3", "trianglify", "jquery-ui"], function($, d3, Trianglify) 
     
     var updateOptions = function(option, newValue) {
         options[option] = newValue;
-    }
+    };
+    
+    var updateColors = function() {
+        var colorPalette = Trianglify.randomColor();
+        options.x_gradient = colorPalette;
+        options.y_gradient = _lightenColorArray(colorPalette);
+    };
+    
+    var _lightenColorArray = function(colorArray) {
+        return d3.rgb(colorArray).brighter(.5);
+    };
 
     return {
         injectPattern: injectPattern,
         refresh: refresh,
-        updateOptions: updateOptions
+        updateOptions: updateOptions,
+        updateColors: updateColors
     };
 });

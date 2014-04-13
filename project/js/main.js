@@ -9,7 +9,14 @@ require(["js/trianglify-container", "js/trianglify-controls"], function(Triangli
     };
 
     $.each(TrianglifyControls.events, function(key, value) {
-        registerSliderCallback(value);
+        if (value == TrianglifyControls.events["colors.new"]) {
+            TrianglifyControls.subscribe(value, function() {
+                TrianglifyContainer.updateColors();
+                TrianglifyContainer.refresh();
+            });
+        } else {
+            registerSliderCallback(value);
+        }
     });
 
 });

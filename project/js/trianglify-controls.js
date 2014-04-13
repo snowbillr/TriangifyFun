@@ -3,7 +3,8 @@ define(["jquery", "jquery-ui"], function($) {
         "cellsize.changed": "cellsize",
         "bleed.changed": "bleed",
         "cellpadding.changed": "cellpadding",
-        "noiseIntensity.changed": "noiseIntensity"
+        "noiseIntensity.changed": "noiseIntensity",
+        "colors.new": "colors"
     };
 
     var subscriptions = {};
@@ -11,15 +12,18 @@ define(["jquery", "jquery-ui"], function($) {
         subscriptions[value] = [];
     });
 
-    var triggerSubscribers = function(event, newValue) {
+    var triggerSubscribers = function(event) {
+        var args = Array.prototype.slice.call(arguments);
+        args = args.slice(1);
+        
         $.each(subscriptions[event], function(index, callback) {
-            callback(newValue);
-        })
-    }
+            callback.apply(null, args);
+        });
+    };
 
     var subscribe = function(event, callback) {
         subscriptions[event].push(callback);
-    }
+    };
 
     var $cellsizeSlider = $("#cellsize-slider").slider({
         min: 0,
@@ -50,6 +54,11 @@ define(["jquery", "jquery-ui"], function($) {
             triggerSubscribers(events["noiseIntensity.changed"], slider.value);
         }
     }).slider("value", 0.3);
+
+    var $colorButton = $("#color-button");
+    $colorButton.click(function() {
+        triggerSubscribers(events["colors.new"]);
+    });
 
     return {
         events: events,
