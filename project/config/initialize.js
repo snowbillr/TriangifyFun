@@ -1,8 +1,14 @@
-require.config({
+requirejs.config({
     baseUrl: '../../',
     paths: {
+        //folders
         js: "project/js",
-        jquery: "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min"
+        "3rd-party": "3rd-party",
+        
+        //files
+        jquery: "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min",
+        trianglify: "3rd-party/js/trianglify",
+        d3: "//cdnjs.cloudflare.com/ajax/libs/d3/3.4.5/d3"
     }
 });
 
